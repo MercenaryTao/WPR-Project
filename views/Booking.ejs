@@ -1,9 +1,18 @@
-
+<script src="/Controller/BookingC.js"></script>
   <body>
     <div class="container">
       <h1>Booking</h1>
       <form action="/Booking" method="POST">
         <div class="form-group">
-       
+
+          <label for="event">Event:</label>
+          <select class="form-control" id="event" name="event" required>
+            <option value="">Select an event</option>
+            <option value="Event 1">Event 1</option>
+            <option value="Event 2">Event 2</option>
+            <option value="Event 3">Event 3</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">Book Now</button>
       </form>
     </div>

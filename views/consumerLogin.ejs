@@ -1,0 +1,22 @@
+
+  <body>
+    <div class="container">
+      <h1>Consumer Login</h1>
+      <form action="/consumerLogin" method="POST">
+      
+        <div class="form-group">
+          <fieldset>
+  <h4>Welcome Back!</h4>
+
+            <input type="text" name="username" id="username" placeholder="Username" required unique>
+            <input type="email" name="email" id="email" placeholder="Email" required unique>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <br>
+            <button type="submit">Login</button>
+
+          </fieldset>
+          
+          <p>Admin? <a href="/AdminLogin">Login here</a></p>
+        </div>
+      </form>
+    </div>
