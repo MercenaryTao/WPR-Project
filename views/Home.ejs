@@ -1,11 +1,17 @@
-
+<script src="/Controller/EventsC.js"></script>
   <body>
     <div class="container">
+        <form action="/Home" method="POST">
       <h1>Home Page</h1>
       <nav>
        <a href="/Booking">Booking & Dashboard</a>
-       <a href="/UserLogin">User Login</a>
-       <a href="/Events">Events</a>
+       <a href="/consumerLogin">Login</a>
        <a href="/Contact">Contact</a>
       </nav>
+      <% events.forEach(event => { %>
+            <h2><%= event.event %></h2>
+            <p>Price: $<%= event.price %></p>
+            <p>Quantity: <%= event.qty %></p>
+          <% }); %>
+</form>
     </div>
