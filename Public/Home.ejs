@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home - Smart Events</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h1>Available Events</h1>
+
+  <form method="GET" action="/Home">
+    <input type="text" name="search" placeholder="Search events...">
+    <button type="submit">Filter</button>
+  </form>
+
+  <div>
+    <% events.forEach(event => { %>
+      <div>
+        <h3><%= event.event %></h3>
+        <p>Price: $<%= event.price %></p>
+        <p>Tickets left: <%= event.quantity %></p>
+        <a href="/Booking/<%= event._id %>">Book Now</a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
