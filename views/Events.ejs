@@ -29,12 +29,24 @@ if (window.location.search.includes("success=1")) {
 </fieldset>
 <input type="text" name="event" id="eventInput" placeholder="Event Name" required>
 <input type="number" name="price" id="priceInput" placeholder="R" required>
-<input type="number" name="qty" id="qtyInput" placeholder="Quantity" required>
+<input type="number" name="quantity" id="qtyInput" placeholder="Quantity" required>
 <button>Add Event</button>
           <% events.forEach(event => { %>
             <h4><%= event.event %></h4>
             <p>Price: $<%= event.price %></p>
-            <p>Quantity: <%= event.qty %></p>
+            <p>Quantity: <%= event.quantity %></p>
+             <a href="/EditEvent/<%= event._id %>">
+            Edit
+        </a>
+        <br>
+          <form action="/DeleteEvent/<%= event._id %>" method="POST">
+
+        <button type="submit">
+            Delete
+        </button>
+
+    </form>
+
           <% }); %>
           
         </div>

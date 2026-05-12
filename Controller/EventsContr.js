@@ -26,10 +26,30 @@ const createEvent = async (req, res) => {
     res.redirect("/Events");
 };
 
+const editEvent = async (req, res) => {
+    const event = await Event.findById(req.params.id);
+    res.render("Events/EditEvent", { event });
+};
+const deleteEvent = async (req, res) => {
+    await Event.findByIdAndDelete(req.params.id);
+    res.redirect("/Events");
+};
+
+const updateEvent = async (req, res) => {
+    await Event.findByIdAndUpdate(req.params.id, {
+        event: req.body.event,
+        price: req.body.price,
+        quantity: req.body.quantity
+    });
+    res.redirect("/Events");
+};
 
 module.exports = {
     home,
     events,
-    createEvent
+    createEvent,
+    editEvent,
+    updateEvent,
+    deleteEvent
    
 };

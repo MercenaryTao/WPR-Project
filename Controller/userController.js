@@ -10,27 +10,43 @@ const admins = async (req, res) => {
     });
 };
 const addAdmin = async (req, res) => {
+  const existingUser = await admin.findOne({
+    $or: [
+    {email: req.body.email},
+    {username: req.body.username}
+    ]
+  });
 
+
+if (existingUser) {
+   return res.render("AdminSignUp", {
+        error: "Email already exists or username already taken",
+    });
+} else {
+    res.redirect("/Events?success=1");
+}
+// 
+   
     await admin.create({
         username: req.body.username,
         email: req.body.email,
         role: "admin"
     });
-    const existingUser = await Admin.findOne({
-    $or: [
-        { username: req.body.username },
-        { email: req.body.email }
-    ]
-});
 
-if (existingUser) {
-    return res.render("AdminSignUp", {
-        error: "Username or email already exists"
-    });
-}
-    res.redirect("/Events?success=1");
 };
-
+const loginAdmin = async (req, res) => {
+    const existingUser = await admin.findOne({
+        email: req.body.email,
+        password: req.body.password
+    });
+    if (existingUser) {
+        res.render("AdminLogin", {
+            error: "Invalid email or password"
+        });
+    } else {
+        res.redirect("/Events?success=1");
+    }
+};
 const addConsumer = async (req, res) => {
     await consumer.create({
         username: req.body.username,
@@ -41,6 +57,7 @@ const addConsumer = async (req, res) => {
 };
 module.exports = {
     addAdmin,
+    loginAdmin,
     addConsumer,
    admins,
 
