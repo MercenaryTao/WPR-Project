@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events Management</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h1>Manage Events</h1>
+
+  <form method="POST" action="/Events/create">
+    <input type="text" name="event" placeholder="Event Name" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <button type="submit">Add Event</button>
+  </form>
+
+  <table>
+    <thead><tr><th>Name</th><th>Price</th><th>Quantity</th><th>Actions</th></tr></thead>
+    <tbody>
+      <% events.forEach(event => { %>
+        <tr>
+          <td><%= event.event %></td>
+          <td>$<%= event.price %></td>
+          <td><%= event.quantity %></td>
+          <td>
+            <a href="/Events/edit/<%= event._id %>">Edit</a>
+            <a href="/Events/delete/<%= event._id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

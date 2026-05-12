@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h1>Book Tickets</h1>
+  <form method="POST" action="/Booking/<%= event._id %>">
+    <input type="number" name="tickets" placeholder="Number of tickets" required>
+    <button type="submit">Confirm Booking</button>
+  </form>
+
+  <h2>Your Booking History</h2>
+  <ul>
+    <% bookings.forEach(b => { %>
+      <li><%= b.eventName %> - <%= b.tickets %> tickets</li>
+    <% }) %>
+  </ul>
+</body>
+</html>
