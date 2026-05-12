@@ -68,5 +68,8 @@ app.get("/ConsumerReg", (req, res) => {
 app.post("/ConsumerLogin", userController.loginConsumer);
 
 app.post("/ConsumerReg", userController.addConsumer);
+
+app.get("/BookEvent/:id", eventsController.bookEvent);
+app.post("/BookEvent/:id", eventsController.confirmBooking);
 app.listen(port, () => {  console.log(`Server listening at http://localhost:${port}`);
 });

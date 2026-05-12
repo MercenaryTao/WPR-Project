@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/BookEvent/<%= event._id %>" method="POST">
+        <fieldset>
+            <h2>Book Event</h2>
+            <p>Event: <%= event.event %></p>
+            <p>Price: $<%= event.price %></p>
+            <p>Quantity: <%= event.qty %></p>
+        </fieldset>
+<fieldset>
+    <input type="number" name="qty" id="qty" placeholder="Quantity" required>
+<br>
+<input type="number" id="qty">
+
+<p id="total"></p>
+
+<script>
+
+const qtyInput = document.getElementById("qty");
+const total = document.getElementById("total");
+
+qtyInput.addEventListener("input", () => {
+
+    const qty = Number(qtyInput.value);
+
+    const price = 100;
+
+    total.textContent = "Cost: $" + (qty * price);
+
+});
+
+</script>   
+</fieldset>
+
+
+        <button type="submit">Book Now</button>
+    </form>
+</body>
+</html>
