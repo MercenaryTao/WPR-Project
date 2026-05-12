@@ -1,0 +1,122 @@
+/* Reset & Base */
+body.page {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background: #222;
+  padding: 10px;
+}
+.nav-link {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+.section {
+  padding: 20px;
+}
+.section-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.section-subtitle {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+/* Forms */
+.form {
+  margin: 20px 0;
+}
+.form-input,
+.form-textarea {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+.btn {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0056b3;
+}
+.btn-success {
+  background: #28a745;
+  color: #fff;
+}
+.btn-success:hover {
+  background: #218838;
+}
+.btn-warning {
+  background: #ffc107;
+  color: #000;
+}
+.btn-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* Tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.table th {
+  background: #eee;
+}
+
+/* Event Cards */
+.event-card {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 15px;
+  margin: 10px 0;
+}
+.event-title {
+  margin: 0 0 10px;
+}
+.event-price,
+.event-qty {
+  margin: 5px 0;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+}
+.list-item {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Alerts */
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin: 10px 0;
+}
