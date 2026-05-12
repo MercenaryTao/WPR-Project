@@ -31,59 +31,67 @@ if (existingUser) {
     await admin.create({
         username: req.body.username,
         email: req.body.email,
+        password: req.body.password,
         role: "admin"
     });
 
 };
 const loginAdmin = async (req, res) => {
     const existingUser = await admin.findOne({
-        email: req.body.email,
+        username: req.body.username,
         password: req.body.password
     });
     if (existingUser) {
         res.render("AdminLogin", {
-            error: "Invalid email or password"
+            error: "Invalid username or password"
         });
     } else {
         res.redirect("/Events?success=1");
     }
 };
 const addConsumer = async (req, res) => {
-     const existingUser = await consumer.findOne({
-    $or: [
-    {email: req.body.email},
-    {username: req.body.username}
-    ]
-  });
 
-
-if (existingUser) {
-   return res.render("ConsumerReg", {
-        error: "Email already exists or username already taken",
+    const existingUser = await consumer.findOne({
+        $or: [
+            { email: req.body.email },
+            { username: req.body.username }
+        ]
     });
-} else {
-    res.redirect("/Events?success=1");
-}
+
+    if (existingUser) {
+
+        return res.render("ConsumerReg", {
+            error: "Email already exists or username already taken"
+        });
+
+    }
+
     await consumer.create({
         username: req.body.username,
         email: req.body.email,
+        password: req.body.password,
         role: "user"
     });
-    res.redirect("/Home?success=1");
+
+    res.redirect("/");
 };
 
 const loginConsumer = async (req, res) => {
+
     const existingUser = await consumer.findOne({
-        email: req.body.email,
+        username: req.body.username,
         password: req.body.password
     });
+
     if (existingUser) {
-        res.redirect("/Home?success=1");
-    } else {
-        res.render("ConsumerLogin", {
-            error: "Invalid email or password"
-        });
+
+        return res.redirect("/");
+
     }
+
+    res.render("ConsumerLogin", {
+        error: "Invalid username or password"
+    });
 };
 
 module.exports = {
