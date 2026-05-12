@@ -55,6 +55,7 @@ app.get("/AdminSignUp", (req, res) => {
 app.post("/AdminSignUp", userController.addAdmin);
 
 app.get("/EditEvent/:id", eventsController.editEvent);
+app.get("/DeleteEvent/:id", eventsController.deleteEventPage);
 
 app.post("/EditEvent/:id", eventsController.updateEvent);
 app.post("/DeleteEvent/:id", eventsController.deleteEvent);

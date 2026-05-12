@@ -30,6 +30,12 @@ const editEvent = async (req, res) => {
     const event = await Event.findById(req.params.id);
     res.render("Events/EditEvent", { event });
 };
+
+const deleteEventPage = async (req, res) => {
+    const event = await Event.findById(req.params.id);
+    res.render("Events/DeleteEvent", { event });
+};
+
 const deleteEvent = async (req, res) => {
     await Event.findByIdAndDelete(req.params.id);
     res.redirect("/Events");
@@ -63,9 +69,11 @@ module.exports = {
     events,
     createEvent,
     editEvent,
+    deleteEventPage,
     updateEvent,
     deleteEvent,
     bookEvent,
-    confirmBooking
-   
+    confirmBooking,
+    deleteEvent
+
 };

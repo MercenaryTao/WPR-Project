@@ -1,54 +1,36 @@
-<script src="/Controller/EventsC.js"></script>
-<script src="/Controller/adminController.js"></script>
-  
-  </script>
-  <body>
-<script>
-if (window.location.search.includes("success=1")) {
-    alert("Admin added successfully");
-}
-</script>
-    <div class="container">
-      <h1>Events</h1>
-      <form action="/Events" method="POST">
-     
-        <div class="events-list">
-          <input type="text" placeholder="Search" id="searchInput" onkeypress="searchEvents(this.value)" /> 
-          <script>
-  // This code only runs once it reaches the user's browser
-  document.getElementById('searchInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      searchEvents(e);
-      alert("Keyword: " + e.target.value);
-      window.location.href = '/search?q=' + e.target.value;
-    }
-  });
-</script>
-\
-  <h1></h1>
-</fieldset>
-<input type="text" name="event" id="eventInput" placeholder="Event Name" required>
-<input type="number" name="price" id="priceInput" placeholder="R" required>
-<input type="number" name="quantity" id="qtyInput" placeholder="Quantity" required>
-<button>Add Event</button>
-          <% events.forEach(event => { %>
-            <h4><%= event.event %></h4>
-            <p>Price: $<%= event.price %></p>
-            <p>Quantity: <%= event.quantity %></p>
-             <a href="/EditEvent/<%= event._id %>">
-            Edit
-        </a>
-        <br>
-          <form action="/DeleteEvent/<%= event._id %>" method="POST">
-
-        <button type="submit">
-            Delete
-        </button>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Events</h1>
+    <form action="/Events" method="POST">
+      <div class="events-list">
+        <input type="text" placeholder="Search" id="searchInput" />
+        <input type="text" name="event" id="eventInput" placeholder="Event Name" required>
+        <input type="number" name="price" id="priceInput" placeholder="R" required>
+        <input type="number" name="quantity" id="qtyInput" placeholder="Quantity" required>
+        <button>Add Event</button>
+      </div>
     </form>
 
-          <% }); %>
-          
+    <div class="events-list">
+      <% events.forEach(event => { %>
+        <div class="event-item">
+          <h4><%= event.event %></h4>
+          <p>Price: $<%= event.price %></p>
+          <p>Quantity: <%= event.quantity %></p>
+          <a href="/EditEvent/<%= event._id %>">Edit</a>
+          <a href="/DeleteEvent/<%= event._id %>">Delete</a>
         </div>
-      </form>
+      <% }); %>
     </div>
+  </div>
+
+  <script src="/js/eventActions.js"></script>
+</body>
+</html>
