@@ -6,18 +6,21 @@
     <title>Document</title>
 </head>
 <body>
+  <form action="/AdminSignUp" method="POST">
   <h1>Register Admin</h1>
+  <fieldset>
             <input type="text" name="username" placeholder="Username" required unique> <br> <br>
             <input type="email" name="email" id="email" placeholder="Email" required unique><br> <br>
             <input type="password" name="password" placeholder="Password" required><br> <br>
             <button type="submit">Register</button>
+             <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+<% } %>
+  </fieldset>
+  </form>
      
-            <% admins.forEach(user => { %>
-            <h2><%= user.username %></h2>
-            <p>Email: <%= user.email %></p>
-            <p>Password: <%= user.password %></p>
-          <% }); %>
+  
 </script>
 </body>
 </html>
-<script src="/Controller/userController.js"></script>
+<!-- <script src="/Controller/userController.js"></script> -->

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <form action="/EditEvent/<%= event._id %>" method="POST">
+        <input type="text" name="event" value="<%= event.event %>" required>
+        <input type="number" name="price" value="<%= event.price %>" required>
+        <input type="number" name="quantity" value="<%= event.quantity %>" required>
+        <button type="submit">Update Event</button>
+    </form>
+</body>
+</html>
+<script src="/Controller/EventsContr.js"></script>

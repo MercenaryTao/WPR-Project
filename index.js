@@ -47,11 +47,19 @@ app.post("/Contact", (req, res) => {
 app.get("/AdminLogin", (req, res) => {
     res.render("AdminLogin");
 });
+app.post("/AdminLogin", adminController.loginAdmin);
 
+app.get("/AdminSignUp", (req, res) => {
+  res.render("AdminSignUp", {
+        error: req.query.error
+    });
+});
+app.post("/AdminSignUp", adminController.addAdmin);
 
-app.get("/AdminSignUp", adminController.admins);
-// app.post("AdminSignUp", adminController.addAdmin);
+app.get("/EditEvent/:id", eventsController.editEvent);
 
+app.post("/EditEvent/:id", eventsController.updateEvent);
+app.post("/DeleteEvent/:id", eventsController.deleteEvent);
 
 app.listen(port, () => {  console.log(`Server listening at http://localhost:${port}`);
 });

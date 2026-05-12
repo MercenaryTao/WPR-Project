@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const adminSchema = new mongoose.Schema({
-    username: String,
-    email: String,
+    username: { type: String, unique: true },
+    email: { type: String, unique: true },
     role: {
         type: String,
         default: "admin"
@@ -12,8 +12,8 @@ const adminSchema = new mongoose.Schema({
 const admins = mongoose.model("Admin", adminSchema);
 
 const consumerSchema = new mongoose.Schema({
-    username: String,
-    email: String,
+    username: { type: String, unique: true },
+    email: { type: String, unique: true },
     role: {
         type: String,
         default: "consumer"
