@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+      <h1>Consumer Registration</h1>
+      <form action="/ConsumerReg" method="POST">
+      
+        <div class="form-group">
+          <fieldset>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+          <br>
+            <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+<% } %>
+          <br>
+        <button type="submit">Sign Up</button>
+    </fieldset>
+        </div>
+      </form>
+    </div>
+</body>
+</html>
