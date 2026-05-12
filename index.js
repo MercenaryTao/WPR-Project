@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const eventsController = require("./Controller/EventsContr");
-const adminController = require("./Controller/userController");
+const userController = require("./Controller/userController");
 
 mongoose.connect("mongodb+srv://600857_db_user:skLwMLnpoZ5uplKs@wprcluster0.eucqytb.mongodb.net/")
 .then(() => {
@@ -35,9 +35,7 @@ app.post("/Events", eventsController.createEvent);
 app.get("/consumerLogin", (req, res) => {
     res.render("consumerLogin");
 });
-app.post("/consumerLogin", (req, res) => {
-    res.render("consumerLogin");
-});
+
 app.get("/Contact", (req, res) => {
     res.render("Contact");
 });
@@ -47,14 +45,14 @@ app.post("/Contact", (req, res) => {
 app.get("/AdminLogin", (req, res) => {
     res.render("AdminLogin");
 });
-app.post("/AdminLogin", adminController.loginAdmin);
+app.post("/AdminLogin", userController.loginAdmin);
 
 app.get("/AdminSignUp", (req, res) => {
   res.render("AdminSignUp", {
         error: req.query.error
     });
 });
-app.post("/AdminSignUp", adminController.addAdmin);
+app.post("/AdminSignUp", userController.addAdmin);
 
 app.get("/EditEvent/:id", eventsController.editEvent);
 app.get("/DeleteEvent/:id", eventsController.deleteEventPage);
@@ -62,5 +60,13 @@ app.get("/DeleteEvent/:id", eventsController.deleteEventPage);
 app.post("/EditEvent/:id", eventsController.updateEvent);
 app.post("/DeleteEvent/:id", eventsController.deleteEvent);
 
+app.get("/ConsumerReg", (req, res) => {
+    res.render("ConsumerReg", {
+        error: req.query.error
+    });
+});
+app.post("/ConsumerLogin", userController.loginConsumer);
+
+app.post("/ConsumerReg", userController.addConsumer);
 app.listen(port, () => {  console.log(`Server listening at http://localhost:${port}`);
 });
