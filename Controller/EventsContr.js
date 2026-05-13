@@ -125,7 +125,7 @@ const bookEvent = async (req, res) => {
 
 const confirmBooking = async (req, res) => {
     const event = await Event.findById(req.params.id);
-    // Logic for confirming booking
+
     event.quantity -= req.body.qty;
     await event.save();
     res.redirect("/");
