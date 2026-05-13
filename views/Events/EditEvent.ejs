@@ -8,15 +8,22 @@
 <body>
   <div class="container">
     <h1>Edit Event</h1>
-    <form id="updateEventForm">
+    <% if (error) { %>
+      <div class="alert-error"><%= error %></div>
+    <% } %>
+    <form id="updateEventForm" class="form">
       <label>Event</label>
-      <input type="text" id="eventInput" value="<%= event.event %>" required>
+      <input class="form-input" type="text" id="eventInput" value="<%= event.event %>" required>
+      <label>Category</label>
+      <input class="form-input" type="text" id="categoryInput" value="<%= event.category || '' %>" required>
+      <label>Date</label>
+      <input class="form-input" type="date" id="dateInput" value="<%= event.date ? event.date.toISOString().split('T')[0] : '' %>" required>
       <label>Price</label>
-      <input type="number" id="priceInput" value="<%= event.price %>" required>
+      <input class="form-input" type="number" id="priceInput" value="<%= event.price %>" required>
       <label>Quantity</label>
-      <input type="number" id="quantityInput" value="<%= event.quantity %>" required>
-      <button type="button" onclick="updateEvent('<%= event._id %>')">Update Event</button>
-      <a href="/Events">Cancel</a>
+      <input class="form-input" type="number" id="quantityInput" value="<%= event.quantity %>" required>
+      <button class="btn btn-primary" type="button" onclick="updateEvent('<%= event._id %>')">Update Event</button>
+      <a class="btn btn-warning" href="/Events">Cancel</a>
     </form>
   </div>
 

@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
@@ -14,12 +15,23 @@ mongoose.connect("mongodb+srv://600857_db_user:skLwMLnpoZ5uplKs@wprcluster0.eucq
     console.error("Error connecting to MongoDB:", err);
 });
 
-
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session({
+    secret: "replace-with-a-secure-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 2
+    }
+}));
 
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 app.get("/", eventsController.home);
 
@@ -68,6 +80,14 @@ app.get("/ConsumerReg", (req, res) => {
 app.post("/ConsumerLogin", userController.loginConsumer);
 
 app.post("/ConsumerReg", userController.addConsumer);
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout error:", err);
+        }
+        res.redirect("/");
+    });
+});
 
 app.get("/BookEvent/:id", eventsController.bookEvent);
 app.post("/BookEvent/:id", eventsController.confirmBooking);

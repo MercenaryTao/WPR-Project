@@ -1,18 +1,73 @@
-<script src="/Controller/EventsC.js"></script>
-  <body>
-    <div class="container">
-        <form action="/Home" method="POST">
-      <h1>Home Page</h1>
-      <nav>
-       <a href="/Booking">Booking & Dashboard</a>
-       <a href="/consumerLogin">Login</a>
-       <a href="/Contact">Contact</a>
-      </nav>
-      <% events.forEach(event => { %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body class="page">
+  <div class="container">
+    <h1>Home Page</h1>
+    <nav>
+      <a href="/Booking">Booking & Dashboard</a>
+      <% if (user) { %>
+        <span>Welcome, <%= user.username %> (<%= user.role %>)</span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/consumerLogin">Login</a>
+      <% } %>
+      <a href="/Contact">Contact</a>
+    </nav>
+
+    <section class="filters">
+      <h2>Search & Filter Events</h2>
+      <form action="/" method="GET" class="filter-form">
+        <div>
+          <label for="search">Search</label>
+          <input id="search" name="search" type="search" value="<%= filters.search %>" placeholder="Search event name" />
+        </div>
+        <div>
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            <option value="all" <%= filters.category === "all" ? "selected" : "" %>>All</option>
+            <% categories.forEach(category => { %>
+              <option value="<%= category %>" <%= filters.category === category ? "selected" : "" %>><%= category %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" value="<%= filters.date %>" />
+        </div>
+        <div>
+          <label for="availability">Availability</label>
+          <select id="availability" name="availability">
+            <option value="all" <%= filters.availability === "all" ? "selected" : "" %>>All</option>
+            <option value="available" <%= filters.availability === "available" ? "selected" : "" %>>Available</option>
+            <option value="soldout" <%= filters.availability === "soldout" ? "selected" : "" %>>Sold Out</option>
+          </select>
+        </div>
+        <button type="submit">Apply</button>
+      </form>
+    </section>
+
+    <section class="event-list">
+      <% if (!events.length) { %>
+        <p>No events match your search or filters.</p>
+      <% } else { %>
+        <% events.forEach(event => { %>
+          <article class="event-item">
             <h2><%= event.event %></h2>
             <p>Price: $<%= event.price %></p>
-            <p>Quantity: <%= event.qty %></p>
+            <p>Category: <%= event.category || "General" %></p>
+            <p>Date: <%= event.date ? event.date.toLocaleDateString() : "TBD" %></p>
+            <p>Tickets left: <%= event.quantity %></p>
+            <p>Availability: <%= event.quantity > 0 ? "Available" : "Sold Out" %></p>
             <a href="/BookEvent/<%= event._id %>">Book Event</a>
-          <% }); %>
-</form>
-    </div>
+          </article>
+        <% }) %>
+      <% } %>
+    </section>
+  </div>
+</body>
+</html>
