@@ -61,9 +61,8 @@ app.get("/consumerLogin", (req, res) => {
 app.get("/Contact", (req, res) => {
     res.render("Contact");
 });
-app.post("/Contact", (req, res) => {
-    res.render("Contact");
-});
+app.post("/Contact", userController.enquire);
+
 app.get("/AdminLogin", (req, res) => {
     res.render("AdminLogin");
 });
@@ -95,12 +94,16 @@ app.get("/logout", (req, res) => {
         if (err) {
             console.error("Logout error:", err);
         }
-        res.redirect("/");
+        res.redirect("/Home");
     });
 });
 
 app.get("/BookEvent/:id", eventsController.bookEvent);
 app.post("/BookEvent/:id", eventsController.confirmBooking);
+
+app.get("/Enquiries", isAdmin, userController.consumersEnquiries);
+app.post("/Enquiries", isAdmin, userController.consumersEnquiries);
+
 app.use(errorHandler);
 app.listen(port, () => {  console.log(`Server listening at http://localhost:${port}`);
 });

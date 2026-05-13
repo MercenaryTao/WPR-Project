@@ -23,8 +23,7 @@
         <input name="date" class="form-input" id="dateInput" type="date" value="<%= event.date ? event.date.toISOString().split('T')[0] : '' %>" required>
         <label for="priceInput" class="form-label">Price</label>
         <input name="price" class="form-input" id="priceInput" type="number" value="<%= event.price %>" required>
-        <label for="quantityInput" class="form-label">Quantity</label>
-        <input name="quantity" class="form-input" id="quantityInput" type="number" value="<%= event.quantity %>" required>
+     
        <button type="submit" class="btn btn-primary">Update Event</button>
         <a class="btn btn-warning" href="/Events">Cancel</a>
       </fieldset>

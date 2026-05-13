@@ -13,6 +13,8 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    Booked :{type: Number, 
+        default: 0},
     date: {
         type: Date,
         required: false

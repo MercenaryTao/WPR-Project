@@ -19,7 +19,8 @@ const consumerSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "consumer"
-    }
+    },
+     inquire: {type: String, default: "" },
 });
 
 const consumer = mongoose.model("Consumer", consumerSchema);

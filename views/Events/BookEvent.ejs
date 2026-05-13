@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="page">
-    <%- include('partials/header') %>
+   
     <div class="section">
         <h1 class="section-title">Book Event</h1>
-        <form class="form" action="/Events/BookEvent/<%= event._id %>" method="POST">
+        <form class="form" action="/BookEvent/<%= event._id %>" method="POST">
             <fieldset class="form-fieldset">
                 <div class="event-card">
                     <h2 class="event-title"><%= event.event %></h2>

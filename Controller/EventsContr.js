@@ -110,7 +110,6 @@ const updateEvent = async (req, res) => {
     await Event.findByIdAndUpdate(req.params.id, {
         event: req.body.event,
         price: req.body.price,
-        quantity: req.body.quantity,
         date: req.body.date ? new Date(req.body.date) : undefined,
         category: req.body.category
     });
@@ -125,10 +124,14 @@ const bookEvent = async (req, res) => {
 
 const confirmBooking = async (req, res) => {
     const event = await Event.findById(req.params.id);
-
+if (event.booked === event.quantity) {
+    return res.send("Not enough slots");
+}
     event.quantity -= req.body.qty;
+    event.booked += event.quantity;
+    
     await event.save();
-    res.redirect("/");
+    res.redirect("/Home");
 }
 
 module.exports = {

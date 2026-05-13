@@ -10,6 +10,13 @@ const admins = async (req, res) => {
         admins
     });
 };
+const consumersEnquiries = async (req, res) => {
+    const consumers = await consumer.find();
+
+ res.render("Enquiries", {
+        consumers
+    });
+};
 const addAdmin = async (req, res) => {
   const existingUser = await admin.findOne({
     $or: [
@@ -86,7 +93,7 @@ const addConsumer = async (req, res) => {
         role: newConsumer.role
     };
 
-    res.redirect("/");
+    res.redirect("/Home");
 };
 
 const loginConsumer = async (req, res) => {
@@ -107,7 +114,19 @@ const loginConsumer = async (req, res) => {
         role: existingUser.role
     };
 
-    res.redirect("/");
+    res.redirect("/Home");
+};
+
+const enquire = async (req, res) => {
+    const consumerUser = await consumer.findByIdAndUpdate(req.session.user.id, {
+        inquire: req.body.message
+});
+    if (!consumerUser) {
+        return res.redirect("/Contact?error=Please log in to submit an enquiry");
+    }
+
+    await consumerUser.save();
+    res.redirect("/Contact?success=Enquiry submitted successfully");
 };
 
 module.exports = {
@@ -116,5 +135,6 @@ module.exports = {
     addConsumer,
     loginConsumer,
     admins,
-
+    consumersEnquiries,
+    enquire
 };

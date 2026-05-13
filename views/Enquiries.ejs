@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Enquiries</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page">
+    <%- include('partials/header') %>
+    <div class="section">
+        <h1 class="section-title">Consumer Enquiries</h1>
+        <div class="list">
+            <% if (consumers && consumers.length) { %>
+                <% consumers.forEach(enquiry => { %>
+                    <div class="event-card">
+                        <h2 class="event-title"> Name: <%= enquiry.username %></h2>
+                        <p class="event-price"><strong>Email:</strong> <%= enquiry.email %></p>
+                        <p class="event-qty">Message: <%= enquiry.inquire %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="event-card">
+                    <p class="event-qty">No enquiries have been submitted yet.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,16 +7,57 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="page">
+
     <%- include('partials/header') %>
     <div class="section">
         <h1 class="section-title">Booking & Dashboard</h1>
+
+        <% if (user && user.role === "admin") { %>
+    <aside class="admin-sidebar">
+        <h2>Admin Panel</h2>
+
+<% events.forEach(event => { %>
+
+    <% const total = event.quantity; %>
+    <% const booked = event.booked || 0; %>
+
+    <% const remaining = total - booked; %>
+    <% const percentBooked = total > 0 ? (booked / total) * 100 : 0; %>
+    <% const revenue = booked * (Number(event.price) || 0); %>
+
+        <p class="dashInfo"><%= event.event %></p>
+
+        <p class="dashInfo">
+            % Booked: <%= percentBooked.toFixed(1) %>%
+        </p>
+        <p class="dashInfo">
+            Remaining: <%= remaining %>
+        </p>
+        <p class="dashInfo">
+            Revenue: $<%= revenue.toFixed(2) %>
+        </p>
+
+
+<% }) %>
+    </div>
+
+
+
+        
+        </ul>
+    </aside>
+<% } %>
+
         <div class="list">
            <% events.forEach(event => { %>
             <div class="event-card">
                 <h2 class="event-title"><%= event.event %></h2>
                 <p class="event-price">Price: $<%= event.price %></p>
-                <p class="event-qty">Quantity: <%= event.quantity %></p>
-                <a href="/Events/BookEvent/<%= event._id %>" class="btn btn-success">Book Event</a>
+                <p class="event-qty">Available Slots: <%= event.quantity %></p>
+                <a href="/BookEvent/<%= event._id %>" class="btn btn-success">Book Event</a>
+                <!-- <form action="/BookEvent/<%= event._id %>" method="POST"> -->
+    <!-- <button type="submit">Book</button>
+</form> -->
             </div>
         <% }); %>
         </div>
