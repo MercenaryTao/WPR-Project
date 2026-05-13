@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <form action="/AdminSignUp" method="POST">
-  <h1>Register Admin</h1>
-  <fieldset>
-            <input type="text" name="username" placeholder="Username" required unique> <br> <br>
-            <input type="email" name="email" id="email" placeholder="Email" required unique><br> <br>
-            <input type="password" name="password" placeholder="Password" required><br> <br>
-            <button type="submit">Register</button>
-             <% if (error) { %>
-    <p style="color:red;"><%= error %></p>
-<% } %>
-  </fieldset>
-  </form>
+<body class="page">
+    <div class="section">
+        <h1 class="section-title">Register Admin</h1>
+        <form action="/AdminSignUp" method="POST" class="form">
+            <fieldset class="form-fieldset">
+                <input type="text" name="username" placeholder="Username" class="form-input" required unique>
+                <input type="email" name="email" id="email" placeholder="Email" class="form-input" required unique>
+                <input type="password" name="password" placeholder="Password" class="form-input" required>
+                <% if (error) { %>
+                    <p class="alert-error"><%= error %></p>
+                <% } %>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
      
   
 </script>

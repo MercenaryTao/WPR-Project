@@ -1,18 +1,24 @@
-<script src="/Controller/BookingC.js"></script>
-  <body>
-    <div class="container">
-      <h1>Booking</h1>
-      <form action="/Booking" method="POST">
-        <div class="form-group">
-
-          <label for="event">Event:</label>
-          <select class="form-control" id="event" name="event" required>
-            <option value="">Select an event</option>
-            <option value="Event 1">Event 1</option>
-            <option value="Event 2">Event 2</option>
-            <option value="Event 3">Event 3</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-primary">Book Now</button>
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page">
+    <div class="section">
+        <h1 class="section-title">Booking & Dashboard</h1>
+        <form action="/Booking" method="POST" class="form">
+            <fieldset class="form-fieldset">
+               <% events.forEach(event => { %>
+                <div class="event-card">
+                    <h2 class="event-title"><%= event.event %></h2>
+                    <p class="event-price">Price: $<%= event.price %></p>
+                    <p class="event-qty">Quantity: <%= event.quantity %></p>
+                    <a href="/BookEvent/<%= event._id %>" class="btn btn-primary">Book Event</a>
+                </div>
+            <% }); %>
+            </fieldset>
+        </form>
     </div>

@@ -1,18 +1,27 @@
-<script src="/Controller/EventsC.js"></script>
-  <body>
-    <div class="container">
-        <form action="/Home" method="POST">
-      <h1>Home Page</h1>
-      <nav>
-       <a href="/Booking">Booking & Dashboard</a>
-       <a href="/consumerLogin">Login</a>
-       <a href="/Contact">Contact</a>
-      </nav>
-      <% events.forEach(event => { %>
-            <h2><%= event.event %></h2>
-            <p>Price: $<%= event.price %></p>
-            <p>Quantity: <%= event.qty %></p>
-            <a href="/BookEvent/<%= event._id %>">Book Event</a>
-          <% }); %>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page">
+    <div class="section">
+        <h1 class="section-title">Home Page</h1>
+        <nav class="navbar" style="margin-bottom: 30px;">
+            <a href="/Booking" class="nav-link">Booking & Dashboard</a>
+            <a href="/consumerLogin" class="nav-link">Login</a>
+            <a href="/Contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="events-list">
+            <% events.forEach(event => { %>
+                <div class="event-card">
+                    <h2 class="event-title"><%= event.event %></h2>
+                    <p class="event-price">Price: $<%= event.price %></p>
+                    <p class="event-qty">Quantity: <%= event.quantity %></p>
+                    <a href="/BookEvent/<%= event._id %>" class="btn btn-primary">Book Event</a>
+                </div>
+            <% }); %>
+        </div>
     </div>

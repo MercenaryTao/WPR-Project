@@ -8,7 +8,10 @@ const home = async (req, res) => {
         events
     });
 };
-
+const availableEvents = async (req, res) => {
+    const events = await Event.find();
+    res.render("Booking", { events });
+};
 const events = async (req, res) => {
     const events = await Event.find();
     res.render("Events", { events });
@@ -74,6 +77,7 @@ module.exports = {
     deleteEvent,
     bookEvent,
     confirmBooking,
-    deleteEvent
+    deleteEvent,
+    availableEvents
 
 };

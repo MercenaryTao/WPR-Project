@@ -1,24 +1,24 @@
-
-  <body>
-    <div class="container">
-        <h1>Login</h1>
-      <form action="/ConsumerLogin" method="POST">
-      
-        <div class="form-group">
-          <fieldset>
-  <h4>Welcome Back!</h4>
-
-            <input type="text" name="username" id="username" placeholder="Username" required unique>
-          
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <br>
-            <button type="submit">Login</button>
-
-          </fieldset>
-          <fieldset>
-            <p>Don't have an account? <a href="/ConsumerReg">Sign up here</a></p>
-          </fieldset>
-          <p>Admin? <a href="/AdminLogin">Login here</a></p>
-        </div>
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+  <body class="page">
+    <div class="section">
+        <h1 class="section-title">Consumer Login</h1>
+        <h4 class="section-subtitle">Welcome Back!</h4>
+        <form action="/ConsumerLogin" method="POST" class="form">
+            <fieldset class="form-fieldset">
+                <input type="text" name="username" id="username" placeholder="Username" class="form-input" required unique>
+                <input type="password" name="password" id="password" placeholder="Password" class="form-input" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </fieldset>
+            <fieldset class="form-fieldset">
+                <p>Don't have an account? <a href="/ConsumerReg">Sign up here</a></p>
+                <p>Admin? <a href="/AdminLogin">Login here</a></p>
+            </fieldset>
+        </form>
     </div>

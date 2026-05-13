@@ -4,28 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Events</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Events</h1>
-    <form action="/Events" method="POST">
-      <div class="events-list">
-        <input type="text" placeholder="Search" id="searchInput" />
-        <input type="text" name="event" id="eventInput" placeholder="Event Name" required>
-        <input type="number" name="price" id="priceInput" placeholder="R" required>
-        <input type="number" name="quantity" id="qtyInput" placeholder="Quantity" required>
-        <button>Add Event</button>
-      </div>
+<body class="page">
+  <div class="section">
+    <h1 class="section-title">Events Management</h1>
+    <form action="/Events" method="POST" class="form">
+      <fieldset class="form-fieldset">
+        <input type="text" placeholder="Search" id="searchInput" class="form-input" />
+        <input type="text" name="event" id="eventInput" placeholder="Event Name" class="form-input" required>
+        <input type="number" name="price" id="priceInput" placeholder="Price (R)" class="form-input" required>
+        <input type="number" name="quantity" id="qtyInput" placeholder="Quantity" class="form-input" required>
+        <button type="submit" class="btn btn-success">Add Event</button>
+      </fieldset>
     </form>
 
     <div class="events-list">
       <% events.forEach(event => { %>
-        <div class="event-item">
-          <h4><%= event.event %></h4>
-          <p>Price: $<%= event.price %></p>
-          <p>Quantity: <%= event.quantity %></p>
-          <a href="/EditEvent/<%= event._id %>">Edit</a>
-          <a href="/DeleteEvent/<%= event._id %>">Delete</a>
+        <div class="event-card">
+          <h2 class="event-title"><%= event.event %></h2>
+          <p class="event-price">Price: $<%= event.price %></p>
+          <p class="event-qty">Quantity: <%= event.quantity %></p>
+          <a href="/EditEvent/<%= event._id %>" class="btn btn-primary">Edit</a>
+          <a href="/DeleteEvent/<%= event._id %>" class="btn btn-danger">Delete</a>
         </div>
       <% }); %>
     </div>

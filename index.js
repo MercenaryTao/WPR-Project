@@ -6,7 +6,7 @@ const port = 3000;
 const eventsController = require("./Controller/EventsContr");
 const userController = require("./Controller/userController");
 
-mongoose.connect("mongodb+srv://600857_db_user:skLwMLnpoZ5uplKs@wprcluster0.eucqytb.mongodb.net/")
+mongoose.connect("mongodb+srv://600857_db_user:vlxVEa0DXSscMtuV@wprcluster0.eucqytb.mongodb.net/")
 .then(() => {
     console.log("Connected to MongoDB");
 })
@@ -23,9 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", eventsController.home);
 
-app.get("/Booking", (req, res) => {
-    res.render("Booking");
-});
+app.get("/Booking", eventsController.availableEvents);
 app.post("/Booking", (req, res) => {
     res.render("Booking");
 });

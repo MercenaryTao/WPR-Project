@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Edit Event</h1>
-    <form id="updateEventForm">
-      <label>Event</label>
-      <input type="text" id="eventInput" value="<%= event.event %>" required>
-      <label>Price</label>
-      <input type="number" id="priceInput" value="<%= event.price %>" required>
-      <label>Quantity</label>
-      <input type="number" id="quantityInput" value="<%= event.quantity %>" required>
-      <button type="button" onclick="updateEvent('<%= event._id %>')">Update Event</button>
-      <a href="/Events">Cancel</a>
+<body class="page">
+  <div class="section">
+    <h1 class="section-title">Edit Event</h1>
+    <form id="updateEventForm" class="form">
+      <fieldset class="form-fieldset">
+        <label for="eventInput">Event Name</label>
+        <input type="text" id="eventInput" value="<%= event.event %>" class="form-input" required>
+        <label for="priceInput">Price</label>
+        <input type="number" id="priceInput" value="<%= event.price %>" class="form-input" required>
+        <label for="quantityInput">Quantity</label>
+        <input type="number" id="quantityInput" value="<%= event.quantity %>" class="form-input" required>
+        <button type="button" onclick="updateEvent('<%= event._id %>')" class="btn btn-primary">Update Event</button>
+        <a href="/Events" class="btn btn-primary" style="text-decoration: none; display: inline-flex; justify-content: center; align-items: center; margin: 10px auto;">Cancel</a>
+      </fieldset>
     </form>
   </div>
 

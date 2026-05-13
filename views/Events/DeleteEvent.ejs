@@ -4,16 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Delete Event</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Delete Event</h1>
-    <p>Are you sure you want to delete the event:</p>
-    <h2><%= event.event %></h2>
-    <p>Price: $<%= event.price %></p>
-    <p>Quantity: <%= event.quantity %></p>
-    <button type="button" onclick="deleteEvent('<%= event._id %>')">Confirm Delete</button>
-    <a href="/Events">Cancel</a>
+<body class="page">
+  <div class="section">
+    <h1 class="section-title">Delete Event</h1>
+    <p style="text-align: center; margin-bottom: 20px;">Are you sure you want to delete the following event?</p>
+    <div class="event-card">
+      <h2 class="event-title"><%= event.event %></h2>
+      <p class="event-price">Price: $<%= event.price %></p>
+      <p class="event-qty">Quantity: <%= event.quantity %></p>
+      <div style="text-align: center; margin-top: 20px;">
+        <button type="button" onclick="deleteEvent('<%= event._id %>')" class="btn btn-danger">Confirm Delete</button>
+        <a href="/Events" class="btn btn-primary" style="margin-left: 10px;">Cancel</a>
+      </div>
+    </div>
   </div>
 
   <script src="/js/eventActions.js"></script>
