@@ -6,20 +6,25 @@
     <title>Edit Event</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body class="page">
-  <div class="section">
-    <h1 class="section-title">Edit Event</h1>
+<body>
+  <div class="container">
+    <h1>Edit Event</h1>
+    <% if (error) { %>
+      <div class="alert-error"><%= error %></div>
+    <% } %>
     <form id="updateEventForm" class="form">
-      <fieldset class="form-fieldset">
-        <label for="eventInput">Event Name</label>
-        <input type="text" id="eventInput" value="<%= event.event %>" class="form-input" required>
-        <label for="priceInput">Price</label>
-        <input type="number" id="priceInput" value="<%= event.price %>" class="form-input" required>
-        <label for="quantityInput">Quantity</label>
-        <input type="number" id="quantityInput" value="<%= event.quantity %>" class="form-input" required>
-        <button type="button" onclick="updateEvent('<%= event._id %>')" class="btn btn-primary">Update Event</button>
-        <a href="/Events" class="btn btn-primary" style="text-decoration: none; display: inline-flex; justify-content: center; align-items: center; margin: 10px auto;">Cancel</a>
-      </fieldset>
+      <label>Event</label>
+      <input class="form-input" type="text" id="eventInput" value="<%= event.event %>" required>
+      <label>Category</label>
+      <input class="form-input" type="text" id="categoryInput" value="<%= event.category || '' %>" required>
+      <label>Date</label>
+      <input class="form-input" type="date" id="dateInput" value="<%= event.date ? event.date.toISOString().split('T')[0] : '' %>" required>
+      <label>Price</label>
+      <input class="form-input" type="number" id="priceInput" value="<%= event.price %>" required>
+      <label>Quantity</label>
+      <input class="form-input" type="number" id="quantityInput" value="<%= event.quantity %>" required>
+      <button class="btn btn-primary" type="button" onclick="updateEvent('<%= event._id %>')">Update Event</button>
+      <a class="btn btn-warning" href="/Events">Cancel</a>
     </form>
   </div>
 

@@ -1,5 +1,7 @@
 async function updateEvent(id) {
   const event = document.getElementById('eventInput').value;
+  const category = document.getElementById('categoryInput').value;
+  const date = document.getElementById('dateInput').value;
   const price = document.getElementById('priceInput').value;
   const quantity = document.getElementById('quantityInput').value;
 
@@ -10,6 +12,8 @@ async function updateEvent(id) {
     },
     body: new URLSearchParams({
       event,
+      category,
+      date,
       price,
       quantity
     })
