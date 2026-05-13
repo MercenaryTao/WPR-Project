@@ -1,13 +1,19 @@
+require('dotenv').config();
+
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
-const app = express();
-const port = 3000;
 const eventsController = require("./Controller/EventsContr");
 const userController = require("./Controller/userController");
+const securityMiddleware = require("./config/security");
+const isAdmin = require("./middleware/adminMiddleware");
+const errorHandler = require("./middleware/errorMiddleware");
+const app = express();
+const port = process.env.PORT || 3000;
+app.use(securityMiddleware);
 
-mongoose.connect("mongodb+srv://600857_db_user:vlxVEa0DXSscMtuV@wprcluster0.eucqytb.mongodb.net/")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Connected to MongoDB");
 })
@@ -50,7 +56,7 @@ app.get("/Contact", (req, res) => {
     res.render("Contact");
 });
 app.post("/Contact", (req, res) => {
-    res.render("/Contact");
+    res.render("Contact");
 });
 app.get("/AdminLogin", (req, res) => {
     res.render("AdminLogin");
@@ -64,11 +70,11 @@ app.get("/AdminSignUp", (req, res) => {
 });
 app.post("/AdminSignUp", userController.addAdmin);
 
-app.get("/EditEvent/:id", eventsController.editEvent);
-app.get("/DeleteEvent/:id", eventsController.deleteEventPage);
+app.get("/EditEvent/:id", isAdmin, eventsController.editEvent);
+app.get("/DeleteEvent/:id", isAdmin, eventsController.deleteEventPage);
 
-app.post("/EditEvent/:id", eventsController.updateEvent);
-app.post("/DeleteEvent/:id", eventsController.deleteEvent);
+app.post("/EditEvent/:id", isAdmin, eventsController.updateEvent);
+app.post("/DeleteEvent/:id", isAdmin, eventsController.deleteEvent);
 
 app.get("/ConsumerReg", (req, res) => {
     res.render("ConsumerReg", {
@@ -89,5 +95,6 @@ app.get("/logout", (req, res) => {
 
 app.get("/BookEvent/:id", eventsController.bookEvent);
 app.post("/BookEvent/:id", eventsController.confirmBooking);
+app.use(errorHandler);
 app.listen(port, () => {  console.log(`Server listening at http://localhost:${port}`);
 });
