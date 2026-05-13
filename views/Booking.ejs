@@ -25,7 +25,7 @@
     <% const percentBooked = total > 0 ? (booked / total) * 100 : 0; %>
     <% const revenue = booked * (Number(event.price) || 0); %>
 
-        <p class="dashInfo"><%= event.event %></p>
+        <h4 class="dashInfo"><%= event.event %></h4>
 
         <p class="dashInfo">
             % Booked: <%= percentBooked.toFixed(1) %>%
@@ -36,7 +36,7 @@
         <p class="dashInfo">
             Revenue: $<%= revenue.toFixed(2) %>
         </p>
-
+<hr>
 
 <% }) %>
     </div>
