@@ -13,7 +13,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(securityMiddleware);
 
-mongoose.connect(process.env.MONGO_URI)
+// mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://600857_db_user:GiQGGS8eYlyg553y@wprcluster0.eucqytb.mongodb.net/WPR381")
 .then(() => {
     console.log("Connected to MongoDB");
 })
@@ -33,13 +34,18 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 2
     }
 }));
-
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    res.locals.error = null;
+    res.locals.success = null;
+    next();
+});
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     next();
 });
 
-app.get("/", eventsController.home);
+app.get("/Home", eventsController.home);
 
 app.get("/Booking", eventsController.availableEvents);
 app.post("/Booking", (req, res) => {

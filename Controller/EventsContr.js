@@ -88,7 +88,7 @@ const createEvent = async (req, res) => {
 
 const editEvent = async (req, res) => {
     const event = await Event.findById(req.params.id);
-    res.render("Events/EditEvent", { event, error: req.query.error });
+    res.render("Events/EditEvent", { event });
 };
 
 const deleteEventPage = async (req, res) => {
@@ -141,7 +141,6 @@ module.exports = {
     deleteEvent,
     bookEvent,
     confirmBooking,
-    deleteEvent,
     availableEvents
 
 };

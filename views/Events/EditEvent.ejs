@@ -6,27 +6,34 @@
     <title>Edit Event</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Edit Event</h1>
+<body class="page">
+
+  <div class="section">
+    <h1 class="section-title">Edit Event</h1>
     <% if (error) { %>
       <div class="alert-error"><%= error %></div>
     <% } %>
-    <form id="updateEventForm" class="form">
-      <label>Event</label>
-      <input class="form-input" type="text" id="eventInput" value="<%= event.event %>" required>
-      <label>Category</label>
-      <input class="form-input" type="text" id="categoryInput" value="<%= event.category || '' %>" required>
-      <label>Date</label>
-      <input class="form-input" type="date" id="dateInput" value="<%= event.date ? event.date.toISOString().split('T')[0] : '' %>" required>
-      <label>Price</label>
-      <input class="form-input" type="number" id="priceInput" value="<%= event.price %>" required>
-      <label>Quantity</label>
-      <input class="form-input" type="number" id="quantityInput" value="<%= event.quantity %>" required>
-      <button class="btn btn-primary" type="button" onclick="updateEvent('<%= event._id %>')">Update Event</button>
-      <a class="btn btn-warning" href="/Events">Cancel</a>
+    <form id="updateEventForm" class="form" action="/EditEvent/<%= event._id %>" method="POST">
+      <fieldset class="form-fieldset">
+        <label for="eventInput" class="form-label">Event</label>
+        <input class="form-input" id="eventInput" type="text" value="<%= event.event %>" required>
+        <label for="categoryInput" class="form-label">Category</label>
+        <input class="form-input" id="categoryInput" type="text" value="<%= event.category || '' %>" required>
+        <label for="dateInput" class="form-label">Date</label>
+        <input class="form-input" id="dateInput" type="date" value="<%= event.date ? event.date.toISOString().split('T')[0] : '' %>" required>
+        <label for="priceInput" class="form-label">Price</label>
+        <input class="form-input" id="priceInput" type="number" value="<%= event.price %>" required>
+        <label for="quantityInput" class="form-label">Quantity</label>
+        <input class="form-input" id="quantityInput" type="number" value="<%= event.quantity %>" required>
+       <button type="submit" class="btn btn-primary">Update Event</button>
+        <a class="btn btn-warning" href="/Events">Cancel</a>
+      </fieldset>
     </form>
   </div>
+
+  <script src="/js/eventActions.js"></script>
+</body>
+</html>
 
   <script src="/js/eventActions.js"></script>
 </body>

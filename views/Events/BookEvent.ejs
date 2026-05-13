@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Event</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <form action="/BookEvent/<%= event._id %>" method="POST">
-        <fieldset>
-            <h2>Book Event</h2>
-            <p>Event: <%= event.event %></p>
-            <p>Price: $<%= event.price %></p>
-            <p>Quantity: <%= event.quantity %></p>
-        </fieldset>
-        <fieldset>
-            <input type="number" name="qty" id="qty" placeholder="Quantity" required>
-            <p id="total"></p>
-            <script>
-                const qtyInput = document.getElementById("qty");
-                const total = document.getElementById("total");
-                qtyInput.addEventListener("input", () => {
-                    const qty = Number(qtyInput.value);
-                    const price = Number(<%= event.price %>);
-                    total.textContent = "Cost: $" + (qty * price);
-                });
-            </script>
-        </fieldset>
-        <button type="submit">Book Now</button>
-    </form>
+<body class="page">
+    <%- include('partials/header') %>
+    <div class="section">
+        <h1 class="section-title">Book Event</h1>
+        <form class="form" action="/Events/BookEvent/<%= event._id %>" method="POST">
+            <fieldset class="form-fieldset">
+                <div class="event-card">
+                    <h2 class="event-title"><%= event.event %></h2>
+                    <p class="event-price">Price: $<%= event.price %></p>
+                    <p class="event-qty">Quantity: <%= event.quantity %></p>
+                </div>
+                <input class="form-input" type="number" name="qty" id="qty" placeholder="Quantity" required>
+                <p id="total"></p>
+            </fieldset>
+            <button class="btn btn-success" type="submit">Book Now</button>
+        </form>
+    </div>
+    <script>
+        const qtyInput = document.getElementById("qty");
+        const total = document.getElementById("total");
+        qtyInput.addEventListener("input", () => {
+            const qty = Number(qtyInput.value);
+            const price = Number(<%= event.price %>);
+            total.textContent = "Cost: $" + (qty * price);
+        });
+    </script>
 </body>
 </html>

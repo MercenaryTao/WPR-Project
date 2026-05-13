@@ -46,7 +46,7 @@ const loginAdmin = async (req, res) => {
     });
     if (!existingUser) {
         return res.render("AdminLogin", {
-            error: "Invalid username or password"
+      
         });
     }
 
@@ -69,7 +69,7 @@ const addConsumer = async (req, res) => {
 
     if (existingUser) {
         return res.render("ConsumerReg", {
-            error: "Email already exists or username already taken"
+         
         });
     }
 

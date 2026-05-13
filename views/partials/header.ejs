@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <a class="nav-link" href="/Home">Home</a>
+  <a class="nav-link" href="/Events">Events</a>
+  <a class="nav-link" href="/Booking">Booking</a>
+  <a class="nav-link" href="/Contact">Contact</a>
+  <a class="nav-link" href="/AdminLogin">Admin</a>
+  <% if (user) { %>
+    <span style="color: #fff; margin-left: 20px;">Welcome, <%= user.username %> (<%= user.role %>)</span>
+    <a class="nav-link" href="/logout">Logout</a>
+  <% } else { %>
+    <a class="nav-link" href="/consumerLogin">Login</a>
+  <% } %>
+</nav>

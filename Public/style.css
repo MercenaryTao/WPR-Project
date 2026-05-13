@@ -212,14 +212,14 @@
 .event-title {
   margin: 0 0 15px;
   font-size: 24px;
-  color: #dcdbdb;
+  color: #000000;
   font-weight: 600;
 }
 .event-price,
 .event-qty {
   margin: 8px 0;
   font-size: 16px;
-  color: #b4b2b2;
+  color: #000000;
 }
 
 /* Lists */
@@ -268,3 +268,12 @@
     font-size: 14px;
   }
 }
+
+.form-label {
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 15px;
+  align-self: flex-start;
+}
+
+

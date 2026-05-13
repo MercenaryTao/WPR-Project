@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="page">
+    <%- include('partials/header') %>
     <div class="section">
         <h1 class="section-title">Booking & Dashboard</h1>
-        <form action="/Booking" method="POST" class="form">
-            <fieldset class="form-fieldset">
-               <% events.forEach(event => { %>
-                <div class="event-card">
-                    <h2 class="event-title"><%= event.event %></h2>
-                    <p class="event-price">Price: $<%= event.price %></p>
-                    <p class="event-qty">Quantity: <%= event.quantity %></p>
-                    <a href="/BookEvent/<%= event._id %>" class="btn btn-primary">Book Event</a>
-                </div>
-            <% }); %>
-            </fieldset>
-        </form>
+        <div class="list">
+           <% events.forEach(event => { %>
+            <div class="event-card">
+                <h2 class="event-title"><%= event.event %></h2>
+                <p class="event-price">Price: $<%= event.price %></p>
+                <p class="event-qty">Quantity: <%= event.quantity %></p>
+                <a href="/Events/BookEvent/<%= event._id %>" class="btn btn-success">Book Event</a>
+            </div>
+        <% }); %>
+        </div>
     </div>

@@ -6,15 +6,16 @@
   <title>Events</title>
   <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Events</h1>
+<body class="page">
+  <%- include('partials/header') %>
+  <div class="section">
+    <h1 class="section-title">Events</h1>
     <% if (error) { %>
       <div class="alert-error"><%= error %></div>
     <% } %>
     <% if (user && user.role === 'admin') { %>
       <form action="/Events" method="POST" class="form">
-        <div class="events-list">
+        <div class="form-fieldset">
           <input class="form-input" type="text" name="event" id="eventInput" placeholder="Event Name" required>
           <input class="form-input" type="text" name="category" id="categoryInput" placeholder="Category" required>
           <input class="form-input" type="date" name="date" id="dateInput" required>
@@ -27,16 +28,16 @@
       <p>Only admins can add events. <a href="/AdminLogin">Admin login</a></p>
     <% } %>
 
-    <div class="events-list">
+    <div class="list">
       <% events.forEach(event => { %>
-        <div class="event-item">
-          <h4><%= event.event %></h4>
-          <p>Price: $<%= event.price %></p>
+        <div class="event-card">
+          <h4 class="event-title"><%= event.event %></h4>
+          <p class="event-price">Price: $<%= event.price %></p>
           <p>Category: <%= event.category || "General" %></p>
           <p>Date: <%= event.date ? event.date.toLocaleDateString() : "TBD" %></p>
-          <p>Quantity: <%= event.quantity %></p>
-          <a href="/EditEvent/<%= event._id %>">Edit</a>
-          <a href="/DeleteEvent/<%= event._id %>">Delete</a>
+          <p class="event-qty">Quantity: <%= event.quantity %></p>
+          <a href="/EditEvent/<%= event._id %>" class="btn btn-primary">Edit</a>
+          <a href="/DeleteEvent/<%= event._id %>" class="btn btn-danger">Delete</a>
         </div>
       <% }); %>
     </div>

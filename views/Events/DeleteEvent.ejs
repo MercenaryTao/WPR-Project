@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body class="page">
+
   <div class="section">
+    <form action="/DeleteEvent/<%= event._id %>" method="POST">
     <h1 class="section-title">Delete Event</h1>
     <p style="text-align: center; margin-bottom: 20px;">Are you sure you want to delete the following event?</p>
     <div class="event-card">
@@ -15,10 +17,11 @@
       <p class="event-price">Price: $<%= event.price %></p>
       <p class="event-qty">Quantity: <%= event.quantity %></p>
       <div style="text-align: center; margin-top: 20px;">
-        <button type="button" onclick="deleteEvent('<%= event._id %>')" class="btn btn-danger">Confirm Delete</button>
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
         <a href="/Events" class="btn btn-primary" style="margin-left: 10px;">Cancel</a>
       </div>
     </div>
+    </form>
   </div>
 
   <script src="/js/eventActions.js"></script>

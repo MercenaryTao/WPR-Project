@@ -4,31 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body class="page">
-  <div class="container">
-    <h1>Home Page</h1>
-    <nav>
-      <a href="/Booking">Booking & Dashboard</a>
-      <% if (user) { %>
-        <span>Welcome, <%= user.username %> (<%= user.role %>)</span>
-        <a href="/logout">Logout</a>
-      <% } else { %>
-        <a href="/consumerLogin">Login</a>
-      <% } %>
-      <a href="/Contact">Contact</a>
-    </nav>
+  <%- include('partials/header') %>
+  <div class="section">
+    <h1 class="section-title">Available Events</h1>
 
-    <section class="filters">
-      <h2>Search & Filter Events</h2>
-      <form action="/" method="GET" class="filter-form">
+    <div>
+      <h2 class="section-subtitle">Search & Filter Events</h2>
+      <form action="/Home" method="GET" class="form">
         <div>
-          <label for="search">Search</label>
-          <input id="search" name="search" type="search" value="<%= filters.search %>" placeholder="Search event name" />
+          <label class="form-label" for="search">Search</label>
+          <input id="search" name="search" type="search" class="form-input" value="<%= filters.search %>" placeholder="Search event name" />
         </div>
         <div>
-          <label for="category">Category</label>
-          <select id="category" name="category">
+          <label class="form-label" for="category">Category</label>
+          <select id="category" name="category" class="form-input">
             <option value="all" <%= filters.category === "all" ? "selected" : "" %>>All</option>
             <% categories.forEach(category => { %>
               <option value="<%= category %>" <%= filters.category === category ? "selected" : "" %>><%= category %></option>
@@ -36,38 +28,41 @@
           </select>
         </div>
         <div>
-          <label for="date">Date</label>
-          <input id="date" name="date" type="date" value="<%= filters.date %>" />
+          <label class="form-label" for="date">Date</label>
+          <input id="date" name="date" type="date" class="form-input" value="<%= filters.date %>" />
         </div>
         <div>
-          <label for="availability">Availability</label>
-          <select id="availability" name="availability">
+          <label class="form-label" for="availability">Availability</label>
+          <select id="availability" name="availability" class="form-input">
             <option value="all" <%= filters.availability === "all" ? "selected" : "" %>>All</option>
             <option value="available" <%= filters.availability === "available" ? "selected" : "" %>>Available</option>
             <option value="soldout" <%= filters.availability === "soldout" ? "selected" : "" %>>Sold Out</option>
           </select>
         </div>
-        <button type="submit">Apply</button>
+        <button type="submit" class="btn btn-primary">Apply</button>
       </form>
-    </section>
+    </div>
 
-    <section class="event-list">
+    <div class="list">
       <% if (!events.length) { %>
         <p>No events match your search or filters.</p>
       <% } else { %>
         <% events.forEach(event => { %>
-          <article class="event-item">
-            <h2><%= event.event %></h2>
-            <p>Price: $<%= event.price %></p>
+          <div class="event-card">
+            <h2 class="event-title"><%= event.event %></h2>
+            <p class="event-price">Price: $<%= event.price %></p>
             <p>Category: <%= event.category || "General" %></p>
             <p>Date: <%= event.date ? event.date.toLocaleDateString() : "TBD" %></p>
-            <p>Tickets left: <%= event.quantity %></p>
+            <p class="event-qty">Tickets left: <%= event.quantity %></p>
             <p>Availability: <%= event.quantity > 0 ? "Available" : "Sold Out" %></p>
-            <a href="/BookEvent/<%= event._id %>">Book Event</a>
-          </article>
+            <a href="/BookEvent/<%= event._id %>" class="btn btn-success">Book Event</a>
+          </div>
         <% }) %>
       <% } %>
-    </section>
+    </div>
+  </div>
+</body>
+</html>
   </div>
 </body>
 </html>
